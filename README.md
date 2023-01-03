@@ -2,7 +2,13 @@
 
 Sortire is a library that provides a variety of sorting algorithms for use in JavaScript. It includes implementations of popular algorithms such as bubble sort, insertion sort, selection sort, heap sort, merge sort, and quick sort. These algorithms can be customized with a comparison function to specify the order of the elements in the array. All of the functions in Sortire return a shallow copy of the modified array.
 
-## Small-range arrays
+## Installation
+
+```
+npm i sortire
+```
+
+## Small Range Arrays
 
 For small range arrays, bubble sort, insertion sort, and selection sort are all excellent options. These algorithms have a time complexity of `O(n^2)`, which means that the time it takes to sort the array increases at a faster rate as the size of the array increases. While they may not be as efficient as `O(n log n)` algorithms for large arrays, they are still very effective for sorting small arrays, as the sorting time will be relatively quick even for very small input sizes.
 
@@ -72,7 +78,7 @@ console.log(sortedDesc); // [9, 8, 7, 6, 5, 4, 3, 2, 1]
 >
 > O(n^2), where n is the length of the array.
 
-## Large-range arrays
+## Large Range Arrays
 
 For large range arrays, heap sort, merge sort, and quick sort are all good choices. These algorithms have a time complexity of `O(n log n)`, which means that the time it takes to sort the array increases at a slower rate as the size of the array increases. This makes them well-suited for sorting large arrays, as the sorting time will not become excessively long even for very large input sizes.
 
