@@ -1,51 +1,31 @@
-import type { CompareFn } from './types';
+import { CompareFn } from './types';
 
 export function quickSort<T>(arr: T[], compareFn: CompareFn<T>): T[] {
   const sortedArray = [...arr];
 
-  sort(sortedArray, 0, sortedArray.length - 1, compareFn);
+  if (sortedArray.length <= 1) return sortedArray;
 
-  return sortedArray;
-}
+  const pivotIndex = sortedArray.length - 1;
+  const pivot = sortedArray[pivotIndex];
+  let partitionIndex = 0;
 
-function sort<T>(
-  arr: T[],
-  left: number,
-  right: number,
-  compareFn: CompareFn<T>
-): void {
-  if (left >= right) return;
+  for (let i = 0; i < pivotIndex; i++) {
+    const element = sortedArray[i];
+    if (compareFn(element, pivot) < 0) {
+      const temp = sortedArray[i];
+      sortedArray[i] = sortedArray[partitionIndex];
+      sortedArray[partitionIndex] = temp;
 
-  const pivotIndex = partition(arr, left, right, compareFn);
-  sort(arr, left, pivotIndex, compareFn);
-  sort(arr, pivotIndex + 1, right, compareFn);
-}
-
-function partition<T>(
-  arr: T[],
-  left: number,
-  right: number,
-  compareFn: CompareFn<T>
-): number {
-  const pivot = arr[Math.floor((left + right) / 2)];
-  let i = left - 1;
-  let j = right + 1;
-
-  while (i < j) {
-    do {
-      i++;
-    } while (compareFn(arr[i], pivot) < 0);
-
-    do {
-      j--;
-    } while (compareFn(arr[j], pivot) > 0);
-
-    if (i >= j) return j;
-
-    const temp = arr[i];
-    arr[i] = arr[j];
-    arr[j] = temp;
+      partitionIndex++;
+    }
   }
 
-  return j;
+  const temp = sortedArray[pivotIndex];
+  sortedArray[pivotIndex] = sortedArray[partitionIndex];
+  sortedArray[partitionIndex] = temp;
+
+  const left = sortedArray.slice(0, partitionIndex);
+  const right = sortedArray.slice(partitionIndex + 1);
+
+  return [...quickSort(left, compareFn), pivot, ...quickSort(right, compareFn)];
 }
