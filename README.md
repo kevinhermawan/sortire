@@ -2,10 +2,83 @@
 
 Sortire is a library that provides a variety of sorting algorithms for use in JavaScript. It includes implementations of popular algorithms such as bubble sort, insertion sort, selection sort, heap sort, merge sort, and quick sort. These algorithms can be customized with a comparison function to specify the order of the elements in the array. All of the functions in Sortire return a shallow copy of the modified array.
 
+## Features
+
+- Same API with `Array.prototype.sort()`
+- Zero dependencies
+
 ## Installation
 
+To install `sortire`, run the following command:
+
 ```
-npm i sortire
+npm install sortire
+```
+
+## Basic Usage
+
+```ts
+import { bubbleSort } from 'sortire';
+
+const array = [5, 3, 8, 4, 9, 1, 6, 2, 7];
+
+// Sort in ascending order
+const sortedAsc = bubbleSort(array, (a, b) => a - b);
+// [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+// Sort in descending order
+const sortedDesc = bubbleSort(array, (a, b) => b - a);
+// [9, 8, 7, 6, 5, 4, 3, 2, 1]
+```
+
+## Strings
+
+```ts
+import { bubbleSort } from 'sortire';
+
+const array = ['Red', 'Green', 'Blue', 'Yellow', 'Purple'];
+
+// Sort in ascending order
+const sortedAsc = bubbleSort(array, (a, b) => (a.name < b.name ? -1 : 1));
+// ['Blue', 'Green', 'Purple', 'Red', 'Yellow']
+
+// Sort in descending order
+const sortedDesc = bubbleSort(array, (a, b) => (a.name > b.name ? -1 : 1));
+// ['Yellow', 'Red', 'Purple', 'Green', 'Blue']
+```
+
+## Array of Objects
+
+```ts
+import { bubbleSort } from 'sortire';
+
+const array = [
+  { id: 1, name: 'Red' },
+  { id: 2, name: 'Green' },
+  { id: 3, name: 'Blue' },
+  { id: 4, name: 'Yellow' },
+  { id: 5, name: 'Purple' },
+];
+
+// Sort by name in ascending order
+const sortedAsc = bubbleSort(array, (a, b) => (a.name < b.name ? -1 : 1));
+// [
+//   { id: 3, name: 'Blue' },
+//   { id: 2, name: 'Green' },
+//   { id: 5, name: 'Purple' },
+//   { id: 1, name: 'Red' },
+//   { id: 4, name: 'Yellow' },
+// ]
+
+// Sort by name in descending order
+const sortedDesc = bubbleSort(array, (a, b) => (a.name > b.name ? -1 : 1));
+// [
+//   { id: 4, name: 'Yellow' },
+//   { id: 1, name: 'Red' },
+//   { id: 5, name: 'Purple' },
+//   { id: 2, name: 'Green' },
+//   { id: 3, name: 'Blue' },
+// ]
 ```
 
 ## Small Range Arrays
@@ -16,66 +89,42 @@ For small range arrays, bubble sort, insertion sort, and selection sort are all 
 
 Bubble sort is a simple sorting algorithm that works by repeatedly iterating through the array and swapping adjacent elements if they are in the wrong order.
 
+**Syntax**
+
 ```ts
-import { bubbleSort } from 'sortire';
-
-const array = [5, 3, 8, 4, 9, 1, 6, 2, 7];
-
-// Sort in ascending order
-const sortedAsc = bubbleSort(array, (a, b) => a - b);
-console.log(sortedAsc); // [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-// Sort in descending order
-const sortedDesc = bubbleSort(array, (a, b) => b - a);
-console.log(sortedDesc); // [9, 8, 7, 6, 5, 4, 3, 2, 1]
+bubbleSort<T>(arr: T[], compareFn: (a: T, b: T) => number): T[]
 ```
 
-> **Time complexity:**
->
+**Time complexity**
+
 > O(n^2), where n is the length of the array.
 
 ### Insertion sort
 
 Insertion sort works by repeatedly inserting the next element in the correct position in the sorted portion of the array.
 
+**Syntax**
+
 ```ts
-import { insertionSort } from 'sortire';
-
-const array = [5, 3, 8, 4, 9, 1, 6, 2, 7];
-
-// Sort in ascending order
-const sortedAsc = insertionSort(array, (a, b) => a - b);
-console.log(sortedAsc); // [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-// Sort in descending order
-const sortedDesc = insertionSort(array, (a, b) => b - a);
-console.log(sortedDesc); // [9, 8, 7, 6, 5, 4, 3, 2, 1]
+insertionSort<T>(arr: T[], compareFn: (a: T, b: T) => number): T[]
 ```
 
-> **Time complexity:**
->
+**Time complexity**
+
 > O(n^2), where n is the length of the array.
 
 ### Selection sort
 
 Selection sort works by repeatedly selecting the smallest element in the unsorted portion of the array and swapping it with the first element in the unsorted portion.
 
+**Syntax**
+
 ```ts
-import { selectionSort } from 'sortire';
-
-const array = [5, 3, 8, 4, 9, 1, 6, 2, 7];
-
-// Sort in ascending order
-const sortedAsc = selectionSort(array, (a, b) => a - b);
-console.log(sortedAsc); // [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-// Sort in descending order
-const sortedDesc = selectionSort(array, (a, b) => b - a);
-console.log(sortedDesc); // [9, 8, 7, 6, 5, 4, 3, 2, 1]
+selectionSort<T>(arr: T[], compareFn: (a: T, b: T) => number): T[]
 ```
 
-> **Time complexity:**
->
+**Time complexity**
+
 > O(n^2), where n is the length of the array.
 
 ## Large Range Arrays
@@ -100,50 +149,44 @@ const sortedDesc = heapSort(array, (a, b) => b - a);
 console.log(sortedDesc); // [9, 8, 7, 6, 5, 4, 3, 2, 1]
 ```
 
-> **Time complexity:**
->
+**Syntax**
+
+```ts
+heapSort<T>(arr: T[], compareFn: (a: T, b: T) => number): T[]
+```
+
+**Time complexity**
+
 > O(n log n), where n is the length of the array.
 
 ### Merge sort
 
 Merge sort is a sorting algorithm that works by dividing the input array in half, sorting each half, and then merging the sorted halves back together.
 
+**Syntax**
+
 ```ts
-import { mergeSort } from 'sortire';
-
-const array = [5, 3, 8, 4, 9, 1, 6, 2, 7];
-
-// Sort in ascending order
-const sortedAsc = mergeSort(array, (a, b) => a - b);
-console.log(sortedAsc); // [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-// Sort in descending order
-const sortedDesc = mergeSort(array, (a, b) => b - a);
-console.log(sortedDesc); // [9, 8, 7, 6, 5, 4, 3, 2, 1]
+mergeSort<T>(arr: T[], compareFn: (a: T, b: T) => number): T[]
 ```
 
-> **Time complexity:**
->
+**Time complexity**
+
 > O(n log n), where n is the length of the array.
 
 ### Quick sort
 
 Quick sort is a sorting algorithm that works by selecting a pivot element from the array and partitioning the array into two halves around the pivot. It can be less efficient for arrays with a large number of duplicate elements or for arrays that are already partially sorted.
 
+**Syntax**
+
 ```ts
-import { quickSort } from 'sortire';
-
-const array = [5, 3, 8, 4, 9, 1, 6, 2, 7];
-
-// Sort in ascending order
-const sortedAsc = quickSort(array, (a, b) => a - b);
-console.log(sortedAsc); // [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-// Sort in descending order
-const sortedDesc = quickSort(array, (a, b) => b - a);
-console.log(sortedDesc); // [9, 8, 7, 6, 5, 4, 3, 2, 1]
+quickSort<T>(arr: T[], compareFn: (a: T, b: T) => number): T[]
 ```
 
-> **Time complexity:**
->
+**Time complexity**
+
 > O(n log n), where n is the length of the array.
+
+## License
+
+[MIT License](/LICENSE)
