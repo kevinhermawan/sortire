@@ -135,20 +135,6 @@ For large range arrays, heap sort, merge sort, and quick sort are all good choic
 
 Heap sort is a sorting algorithm that works by building a [heap data structure](<https://en.wikipedia.org/wiki/Heap_(data_structure)>) from the input array and repeatedly extracting the maximum element from the heap. It requires additional space for the heap data structure, which can make it less suitable for large arrays that do not fit in memory.
 
-```ts
-import { heapSort } from 'sortire';
-
-const array = [5, 3, 8, 4, 9, 1, 6, 2, 7];
-
-// Sort in ascending order
-const sortedAsc = heapSort(array, (a, b) => a - b);
-console.log(sortedAsc); // [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-// Sort in descending order
-const sortedDesc = heapSort(array, (a, b) => b - a);
-console.log(sortedDesc); // [9, 8, 7, 6, 5, 4, 3, 2, 1]
-```
-
 **Syntax**
 
 ```ts
