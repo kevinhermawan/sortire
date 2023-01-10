@@ -1,4 +1,6 @@
-# Sortire ![License](https://img.shields.io/npm/l/sortire) ![Test coverage](https://img.shields.io/codecov/c/github/kevinhermawan/sortire)
+# Sortire
+
+![Minified size](https://img.shields.io/bundlephobia/min/sortire) ![Test coverage](https://img.shields.io/codecov/c/github/kevinhermawan/sortire) ![Monthly download](https://img.shields.io/npm/dm/sortire)
 
 Sortire is a library that provides a variety of sorting algorithms for use in JavaScript. It includes implementations of popular algorithms such as bubble sort, insertion sort, selection sort, heap sort, merge sort, and quick sort. These algorithms can be customized with a comparison function to specify the order of the elements in the array. All of the functions in Sortire return a shallow copy of the modified array.
 
