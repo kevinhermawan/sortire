@@ -1,4 +1,4 @@
-import type { CompareFn } from './types';
+import type { CompareFn } from "./types";
 
 export function mergeSort<T>(arr: T[], compareFn: CompareFn<T>): T[] {
   const sortedArray = [...arr];
@@ -12,7 +12,7 @@ export function mergeSort<T>(arr: T[], compareFn: CompareFn<T>): T[] {
   return merge(
     mergeSort(left, compareFn),
     mergeSort(right, compareFn),
-    compareFn
+    compareFn,
   );
 }
 

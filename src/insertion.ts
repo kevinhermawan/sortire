@@ -1,4 +1,4 @@
-import type { CompareFn } from './types';
+import type { CompareFn } from "./types";
 
 export function insertionSort<T>(arr: T[], compareFn: CompareFn<T>): T[] {
   const sortedArray = [...arr];

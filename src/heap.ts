@@ -1,4 +1,4 @@
-import type { CompareFn } from './types';
+import type { CompareFn } from "./types";
 
 export function heapSort<T>(arr: T[], compareFn: CompareFn<T>): T[] {
   const sortedArray = [...arr];
@@ -26,7 +26,7 @@ function heapify<T>(
   arr: T[],
   i: number,
   size: number,
-  compareFn: CompareFn<T>
+  compareFn: CompareFn<T>,
 ) {
   const left = 2 * i + 1;
   const right = 2 * i + 2;
