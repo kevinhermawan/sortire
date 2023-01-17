@@ -1,7 +1,7 @@
 import type { CompareFn } from "./types";
 
 export function mergeSort<T>(arr: T[], compareFn: CompareFn<T>): T[] {
-  const sortedArray = [...arr];
+  const sortedArray = arr.slice();
 
   if (sortedArray.length <= 1) return sortedArray;
 

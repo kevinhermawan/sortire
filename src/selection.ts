@@ -1,7 +1,7 @@
 import { CompareFn } from "./types";
 
 export function selectionSort<T>(arr: T[], compareFn: CompareFn<T>): T[] {
-  const sortedArray = [...arr];
+  const sortedArray = arr.slice();
 
   for (let i = 0; i < sortedArray.length; i++) {
     let minIndex = i;

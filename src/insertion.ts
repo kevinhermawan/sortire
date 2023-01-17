@@ -1,7 +1,7 @@
 import type { CompareFn } from "./types";
 
 export function insertionSort<T>(arr: T[], compareFn: CompareFn<T>): T[] {
-  const sortedArray = [...arr];
+  const sortedArray = arr.slice();
 
   for (let i = 1; i < sortedArray.length; i++) {
     const current = sortedArray[i];
