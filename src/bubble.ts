@@ -1,7 +1,7 @@
 import type { CompareFn } from "./types";
 
 export function bubbleSort<T>(arr: T[], compareFn: CompareFn<T>): T[] {
-  const sortedArray = [...arr];
+  const sortedArray = arr.slice();
 
   let sorted = false;
 
