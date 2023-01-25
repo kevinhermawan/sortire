@@ -14,19 +14,19 @@ Sortire is a library that provides a variety of sorting algorithms for use in Ja
 
 To install `sortire`, run the following command:
 
-### NPM
+**NPM**
 
 ```
 npm install sortire
 ```
 
-### Yarn
+**Yarn**
 
 ```
 yarn add sortire
 ```
 
-### pnpm
+**pnpm**
 
 ```
 pnpm add sortire
