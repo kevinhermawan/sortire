@@ -6,21 +6,37 @@ Sortire is a library that provides a variety of sorting algorithms for use in Ja
 
 ## Features
 
-- Same API with `Array.prototype.sort()`
+- Same API with [Array.prototype.sort()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
+- Supports Deno via NPM
 - Zero dependencies
 
 ## Installation
 
 To install `sortire`, run the following command:
 
+### NPM
+
 ```
 npm install sortire
+```
+
+### Yarn
+
+```
+yarn add sortire
+```
+
+### pnpm
+
+```
+pnpm add sortire
 ```
 
 ## Basic Usage
 
 ```ts
-import { bubbleSort } from 'sortire';
+import { bubbleSort } from "sortire";
+// import { bubbleSort } from "npm:sortire"; // (for Deno)
 
 const array = [5, 3, 8, 4, 9, 1, 6, 2, 7];
 
@@ -36,9 +52,10 @@ const sortedDesc = bubbleSort(array, (a, b) => b - a);
 ## Strings
 
 ```ts
-import { bubbleSort } from 'sortire';
+import { bubbleSort } from "sortire";
+// import { bubbleSort } from "npm:sortire"; // (for Deno)
 
-const array = ['Red', 'Green', 'Blue', 'Yellow', 'Purple'];
+const array = ["Red", "Green", "Blue", "Yellow", "Purple"];
 
 // Sort in ascending order
 const sortedAsc = bubbleSort(array, (a, b) => (a.name < b.name ? -1 : 1));
@@ -52,14 +69,15 @@ const sortedDesc = bubbleSort(array, (a, b) => (a.name > b.name ? -1 : 1));
 ## Array of Objects
 
 ```ts
-import { bubbleSort } from 'sortire';
+import { bubbleSort } from "sortire";
+// import { bubbleSort } from "npm:sortire"; // (for Deno)
 
 const array = [
-  { id: 1, name: 'Red' },
-  { id: 2, name: 'Green' },
-  { id: 3, name: 'Blue' },
-  { id: 4, name: 'Yellow' },
-  { id: 5, name: 'Purple' },
+  { id: 1, name: "Red" },
+  { id: 2, name: "Green" },
+  { id: 3, name: "Blue" },
+  { id: 4, name: "Yellow" },
+  { id: 5, name: "Purple" },
 ];
 
 // Sort by name in ascending order
