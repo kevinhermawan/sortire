@@ -1,13 +1,13 @@
 {
+  "type": "module",
   "name": "sortire",
   "description": "A collection of popular sorting algorithms for JavaScript",
   "version": "0.0.6",
   "main": "dist/index.js",
-  "module": "dist/index.mjs",
   "typings": "dist/index.d.ts",
   "scripts": {
     "dev": "rollup -c -w",
-    "build": "rimraf dist && cross-env NODE_ENV=production rollup -c",
+    "build": "rimraf dist && rollup -c",
     "format": "rome format . --write",
     "format:check": "rome format .",
     "lint": "rome check .",
@@ -17,7 +17,6 @@
   },
   "devDependencies": {
     "@vitest/coverage-c8": "^0.27.0",
-    "cross-env": "^7.0.3",
     "esbuild": "^0.16.16",
     "rimraf": "^3.0.2",
     "rollup": "^3.9.1",
