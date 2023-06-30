@@ -1,31 +1,50 @@
 import type { CompareFn } from "./types";
 
 export function mergeSort<T>(arr: T[], compareFn: CompareFn<T>): T[] {
-  const sortedArray = arr.slice();
+  return mergeSortHelper(arr, compareFn, 0, arr.length - 1);
+}
 
-  if (sortedArray.length <= 1) return sortedArray;
+function mergeSortHelper<T>(
+  arr: T[],
+  compareFn: CompareFn<T>,
+  start: number,
+  end: number
+): T[] {
+  if (start >= end) {
+    return [arr[start]];
+  }
 
-  const mid = Math.floor(sortedArray.length / 2);
-  const left = sortedArray.slice(0, mid);
-  const right = sortedArray.slice(mid);
+  const mid = Math.floor((start + end) / 2);
+  const left = mergeSortHelper(arr, compareFn, start, mid);
+  const right = mergeSortHelper(arr, compareFn, mid + 1, end);
 
-  return merge(
-    mergeSort(left, compareFn),
-    mergeSort(right, compareFn),
-    compareFn,
-  );
+  return merge(left, right, compareFn);
 }
 
 function merge<T>(left: T[], right: T[], compareFn: CompareFn<T>): T[] {
   const result: T[] = [];
+  let i = 0;
+  let j = 0;
 
-  while (left.length > 0 && right.length > 0) {
-    if (compareFn(left[0], right[0]) <= 0) {
-      result.push(left.shift()!);
+  while (i < left.length && j < right.length) {
+    if (compareFn(left[i], right[j]) <= 0) {
+      result.push(left[i]);
+      i++;
     } else {
-      result.push(right.shift()!);
+      result.push(right[j]);
+      j++;
     }
   }
 
-  return result.concat(left, right);
+  while (i < left.length) {
+    result.push(left[i]);
+    i++;
+  }
+
+  while (j < right.length) {
+    result.push(right[j]);
+    j++;
+  }
+
+  return result;
 }
