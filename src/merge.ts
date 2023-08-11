@@ -8,7 +8,7 @@ function mergeSortHelper<T>(
   arr: T[],
   compareFn: CompareFn<T>,
   start: number,
-  end: number
+  end: number,
 ): T[] {
   if (start >= end) {
     return [arr[start]];
