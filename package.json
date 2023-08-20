@@ -2,7 +2,7 @@
   "type": "module",
   "name": "sortire",
   "description": "A collection of popular sorting algorithms for JavaScript",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "scripts": {
