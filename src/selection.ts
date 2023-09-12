@@ -13,9 +13,10 @@ export function selectionSort<T>(arr: T[], compareFn: CompareFn<T>): T[] {
     }
 
     if (minIndex !== i) {
-      const temp = sortedArray[i];
-      sortedArray[i] = sortedArray[minIndex];
-      sortedArray[minIndex] = temp;
+      [sortedArray[i], sortedArray[minIndex]] = [
+        sortedArray[minIndex],
+        sortedArray[i],
+      ];
     }
   }
 
