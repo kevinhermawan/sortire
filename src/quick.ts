@@ -2,30 +2,41 @@ import { CompareFn } from "./types";
 
 export function quickSort<T>(arr: T[], compareFn: CompareFn<T>): T[] {
   const sortedArray = arr.slice();
+  sortHelper(sortedArray, 0, sortedArray.length - 1, compareFn);
 
-  if (sortedArray.length <= 1) return sortedArray;
+  return sortedArray;
+}
 
-  const pivotIndex = sortedArray.length - 1;
-  const pivot = sortedArray[pivotIndex];
-  let partitionIndex = 0;
+function sortHelper<T>(
+  arr: T[],
+  start: number,
+  end: number,
+  compareFn: CompareFn<T>
+): void {
+  if (start < end) {
+    const partitionIndex = partition(arr, start, end, compareFn);
+    sortHelper(arr, start, partitionIndex - 1, compareFn);
+    sortHelper(arr, partitionIndex + 1, end, compareFn);
+  }
+}
 
-  for (let i = 0; i < pivotIndex; i++) {
-    const element = sortedArray[i];
-    if (compareFn(element, pivot) < 0) {
-      const temp = sortedArray[i];
-      sortedArray[i] = sortedArray[partitionIndex];
-      sortedArray[partitionIndex] = temp;
+function partition<T>(
+  arr: T[],
+  start: number,
+  end: number,
+  compareFn: CompareFn<T>
+): number {
+  const pivot = arr[end];
+  let partitionIndex = start;
 
+  for (let i = start; i < end; i++) {
+    if (compareFn(arr[i], pivot) < 0) {
+      [arr[i], arr[partitionIndex]] = [arr[partitionIndex], arr[i]];
       partitionIndex++;
     }
   }
 
-  const temp = sortedArray[pivotIndex];
-  sortedArray[pivotIndex] = sortedArray[partitionIndex];
-  sortedArray[partitionIndex] = temp;
+  [arr[partitionIndex], arr[end]] = [arr[end], arr[partitionIndex]];
 
-  const left = sortedArray.slice(0, partitionIndex);
-  const right = sortedArray.slice(partitionIndex + 1);
-
-  return [...quickSort(left, compareFn), pivot, ...quickSort(right, compareFn)];
+  return partitionIndex;
 }
