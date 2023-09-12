@@ -2,21 +2,23 @@ import type { CompareFn } from "./types";
 
 export function bubbleSort<T>(arr: T[], compareFn: CompareFn<T>): T[] {
   const sortedArray = arr.slice();
+  const n = sortedArray.length;
 
-  let sorted = false;
+  for (let i = 0; i < n; i++) {
+    let swapped = false;
 
-  while (!sorted) {
-    sorted = true;
+    for (let j = 0; j < n - i - 1; j++) {
+      if (compareFn(sortedArray[j], sortedArray[j + 1]) > 0) {
+        [sortedArray[j], sortedArray[j + 1]] = [
+          sortedArray[j + 1],
+          sortedArray[j],
+        ];
 
-    for (let i = 0; i < sortedArray.length - 1; i++) {
-      if (compareFn(sortedArray[i], sortedArray[i + 1]) > 0) {
-        const temp = sortedArray[i];
-        sortedArray[i] = sortedArray[i + 1];
-        sortedArray[i + 1] = temp;
-
-        sorted = false;
+        swapped = true;
       }
     }
+
+    if (!swapped) break;
   }
 
   return sortedArray;
